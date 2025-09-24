@@ -2,9 +2,9 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// שורש - כדי לוודא שהשרת חי
+// שורש - כדי לבדוק שהשרת חי
 app.get("/", (req, res) => {
-  res.send("Hello from Render! (proxy ready)");
+  res.send("Hello from Render!");
 });
 
 // נתיב שמחזיר את הזמן מ-Binance
