@@ -19,3 +19,18 @@ app.get("/time", async (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+// נתיב שמחזיר את המחיר הממוצע של מטבע
+app.get("/avgPrice", async (req, res) => {
+  try {
+    const symbol = req.query.symbol; // נקבל מה-URL איזה מטבע לחפש
+    if (!symbol) {
+      return res.status(400).json({ error: "Missing symbol parameter" });
+    }
+
+    const r = await fetch(`https://api.binance.com/api/v3/avgPrice?symbol=${symbol}`);
+    const data = await r.json();
+    res.json(data);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
